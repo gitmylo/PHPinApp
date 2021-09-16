@@ -28,6 +28,8 @@ namespace PHPinApp
             string configIni = File.ReadAllText(configFile);
             IniData config = new IniDataParser().Parse(configIni);
             config = insertPlaceholders(config);
+            
+            Browser.Load(config["Browser"]["loadingpage"]);
             setConfig(config);
             setupPhp(config);
         }
@@ -167,6 +169,7 @@ namespace PHPinApp
             config["Screen"]["minheight"] = "350";
 
             config["Browser"]["loadurl"] = "localhost:8001";
+            config["Browser"]["loadingpage"] = "https://gitmylo.github.io/loading";
 
             config["PHP"]["exe"] = "%appdir%/php/php.exe";
             config["PHP"]["launchcommand"] = "-S localhost:8001 -t \"%appdir%/htdocs\"";
