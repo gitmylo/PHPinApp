@@ -34,12 +34,12 @@ namespace PHPinApp
 
         private void setupServer(IniData config)
         {
-            String launchCommand = config["PHP"]["exe"] + " " + config["PHP"]["launchcommand"];
             if (config["PHP"]["debugmode"] == "1")
             {
                 ProcessStartInfo info = new ProcessStartInfo();
-                info.FileName = config["PHP"]["exe"];
+                info.FileName = $"\"{config["PHP"]["exe"]}\"";
                 info.Arguments = config["PHP"]["launchcommand"];
+                info.UseShellExecute = false;
                 phpProc = Process.Start(info);
                 AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
                 Window.Closed += OnProcessExit;
@@ -47,8 +47,9 @@ namespace PHPinApp
             else
             {
                 ProcessStartInfo info = new ProcessStartInfo();
-                info.FileName = config["PHP"]["exe"];
+                info.FileName = $"\"{config["PHP"]["exe"]}\"";
                 info.Arguments = config["PHP"]["launchcommand"];
+                info.UseShellExecute = false;
                 info.CreateNoWindow = true;
                 info.WindowStyle = ProcessWindowStyle.Hidden;
                 phpProc = Process.Start(info);
@@ -167,8 +168,8 @@ namespace PHPinApp
 
             config["Browser"]["loadurl"] = "localhost:8001";
 
-            config["PHP"]["exe"] = "\"%appdir%/php/php.exe\"";
-            config["PHP"]["launchcommand"] = "-S localhost:8001 -t %appdir%/htdocs";
+            config["PHP"]["exe"] = "%appdir%/php/php.exe";
+            config["PHP"]["launchcommand"] = "-S localhost:8001 -t \"%appdir%/htdocs\"";
             config["PHP"]["debugmode"] = "1";
             config["PHP"]["downloadurl"] = "https://windows.php.net/downloads/releases/php-8.0.10-Win32-vs16-x64.zip";
             config["PHP"]["downloaddir"] = "%appdir%/php";
