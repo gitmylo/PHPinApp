@@ -1,2 +1,2 @@
 This product includes PHP software, freely available from <http://www.php.net/software/>
-The project comes with php 8.0.10 and is 64-bit only currently
+Supply the php download url in the config, when the config is auto created it will already have a version set
