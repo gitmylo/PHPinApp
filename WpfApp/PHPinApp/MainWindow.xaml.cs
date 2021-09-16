@@ -167,7 +167,7 @@ namespace PHPinApp
 
             config["Browser"]["loadurl"] = "localhost:8001";
 
-            config["PHP"]["exe"] = "%appdir%/php/php.exe";
+            config["PHP"]["exe"] = "\"%appdir%/php/php.exe\"";
             config["PHP"]["launchcommand"] = "-S localhost:8001 -t %appdir%/htdocs";
             config["PHP"]["debugmode"] = "1";
             config["PHP"]["downloadurl"] = "https://windows.php.net/downloads/releases/php-8.0.10-Win32-vs16-x64.zip";
