@@ -37,7 +37,12 @@ namespace PHPinApp
             String launchCommand = config["PHP"]["exe"] + " " + config["PHP"]["launchcommand"];
             if (config["PHP"]["debugmode"] == "1")
             {
-                Process.Start("cmd.exe", "/k " + launchCommand);//definitely show
+                ProcessStartInfo info = new ProcessStartInfo();
+                info.FileName = config["PHP"]["exe"];
+                info.Arguments = config["PHP"]["launchcommand"];
+                phpProc = Process.Start(info);
+                AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
+                Window.Closed += OnProcessExit;
             }
             else
             {
